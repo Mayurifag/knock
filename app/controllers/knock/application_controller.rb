@@ -1,11 +1,11 @@
 module Knock
-  class ApplicationController < ActionController::Base
-    rescue_from Knock.not_found_exception_class_name, with: :not_found
+  class ApplicationController < ActionController::API
+    rescue_from Knock.not_found_exception_class_name, with: :record_invaild
 
   private
 
-    def not_found
-      head :not_found
+    def record_invaild
+      render json: 'Record invalid', status: :unprocessable_entity
     end
   end
 end
